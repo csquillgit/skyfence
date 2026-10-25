@@ -1,4 +1,4 @@
-package com.example.waypoint
+package com.skyfence
 
 import io.flutter.embedding.android.FlutterActivity
 
