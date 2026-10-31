@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/flight_log_service.dart';
+import '../widgets/tactical_legal_sheet.dart';
 import 'airspaces_screen.dart';
 import 'checklist_screen.dart';
 import 'guide_screen.dart';
@@ -19,6 +20,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      TacticalLegalSheet.checkFirstRun(context, skyFenceLegal);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
