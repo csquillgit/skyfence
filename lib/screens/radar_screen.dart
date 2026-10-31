@@ -6,6 +6,7 @@ import '../services/airspace_engine.dart';
 import '../widgets/airspace_card.dart';
 import '../widgets/ceiling_gauge.dart';
 import '../widgets/status_banner.dart';
+import '../widgets/tactical_legal_sheet.dart';
 
 class RadarScreen extends StatefulWidget {
   const RadarScreen({super.key});
@@ -165,6 +166,34 @@ class _RadarScreenState extends State<RadarScreen> {
             ),
             tooltip: 'Refresh GPS',
             onPressed: _fetchLiveGps,
+          ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert_rounded, color: Color(0xFF94A3B8)),
+            color: const Color(0xFF1E293B),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: const BorderSide(color: Color(0xFF334155)),
+            ),
+            onSelected: (value) {
+              if (value == 'legal') {
+                TacticalLegalSheet.show(context, skyFenceLegal);
+              }
+            },
+            itemBuilder: (ctx) => [
+              const PopupMenuItem(
+                value: 'legal',
+                child: Row(
+                  children: [
+                    Icon(Icons.shield_outlined, color: Color(0xFF38BDF8), size: 18),
+                    SizedBox(width: 10),
+                    Text(
+                      'Legal & Advisory',
+                      style: TextStyle(color: Colors.white, fontSize: 13),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
